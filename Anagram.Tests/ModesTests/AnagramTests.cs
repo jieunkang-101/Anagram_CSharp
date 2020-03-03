@@ -6,27 +6,37 @@ using System;
 namespace Anagram.Tests
 {
   [TestClass]
-  public class AnagramsTests 
+  public class AnagramsTests : IDisposable
   {
+
+    public void Dispose()
+    {
+      //Anagrams.ClearAll();
+    }
+
     [TestMethod]
     public void ItemConstructor_CreatesInstanceOfItem_Item()
     {
-      List<Anagrams> userInputList = new List<Anagrams>();
+      List<string> userInputList = new List<string>();
       Anagrams newAnagrams = new Anagrams("test", userInputList);
       Assert.AreEqual(typeof(Anagrams), newAnagrams.GetType());
     }
+
     [TestMethod]
-    public void CheckWord_SplitWord_ReturnSplitWord()
+    public void SortWord_SortWordByAlphabeticlaOrder_SortedWord()
     {
-      List<Anagrams> userInputList = new List<Anagrams>();
+      List<string> userInputList = new List<string>();
       Anagrams newAnagrams = new Anagrams("bread", userInputList);
-      // string[] wordArr = {"b","r","e","a","d"};
       string sortedWord = "abder";
-      // foreach (var value in wordArr)
-      // {
-      //   Console.WriteLine(value);
-      // }
-      Assert.AreEqual(Anagrams.CheckWord("bread"), sortedWord);
+      Assert.AreEqual(Anagrams.SortWord("bread"), sortedWord);
+    }
+
+    [TestMethod]
+    public void CheckAnagrams_CompareWordToList_True()
+    {
+      List<string> userInputList = new List<string>(){"water","bear","beard"};
+      Anagrams newAnagrams = new Anagrams("bread", userInputList);
+      Assert.AreEqual(true, Anagrams.CheckAnagrams("bread", userInputList));
     }
   }
 }

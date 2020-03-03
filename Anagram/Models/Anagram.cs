@@ -1,34 +1,44 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Anagram.Models
 {
   public class Anagrams
   {
     public string Word { get; set; }
-    public static List<Anagrams> _inputList { get; set; }= new List<Anagrams>{ };
+    public static List<string> _inputList { get; set; } = new List<string>{ };
 
-    public Anagrams(string word, List<Anagrams> inputList)
+    public Anagrams(string word, List<string> inputList)
     {
       Word = word;
       _inputList = inputList;
     }
 
-    public static string CheckWord(string word)
+    public static void ClearAll()
     {
-      char[] wordArr = word.ToCharArray();
+      _inputList.Clear();
+    }
+
+    public static string SortWord(string s)
+    {
+      char[] wordArr = s.ToCharArray();
       Array.Sort(wordArr); 
       string result = string.Join("", wordArr);
       return result;
-
-      // string newString = "";
-
-      // foreach(string character in wordArr)
-      // {
-      //   newString += character;
-      // }
-      // return newString;
     }
 
+    public static bool CheckAnagrams(string word, List<string> userInputList)
+    {
+      string originalWord = Anagrams.SortWord(word);
+      foreach(string element in userInputList)
+      {
+        string newWord = Anagrams.SortWord(element);
+        if (newWord == originalWord){
+          return true;
+        }
+      }
+      return false;
+    }
   }
 }

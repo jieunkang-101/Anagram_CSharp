@@ -1,5 +1,6 @@
 using System;
-using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using Anagram.Models;
 
 namespace Anagram
@@ -8,19 +9,8 @@ namespace Anagram
   {
      public static void Main()
     {
-      // System.Console.WriteLine("Contents of WriteText.txt = {0}", text);
-      string[] lines = System.IO.File.ReadAllLines(@"c:/Users/Guest/Desktop/Anagram.Solution/Anagram/Dictionary.txt");
+      
 
-      Console.WriteLine("choose a word");
-      string word = Console.ReadLine(); 
-
-      foreach(string x in lines)
-      {
-        if(word.Contains(x))
-        {
-          Console.WriteLine("Word exists");
-        }
-      }
 
 
       
